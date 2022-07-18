@@ -75,7 +75,6 @@ class _VideoAppState extends State<VideoApp> {
 
     return Container(
       key: videoContainerKey,
-      // height: 300,
       child: InkWell(
         onTap: () {
           setState(() {
@@ -93,10 +92,16 @@ class _VideoAppState extends State<VideoApp> {
           _controller.value.isPlaying
               ? const SizedBox.shrink()
               : Container(
-                  color: const Color(0xfff5f5f5),
+                  height: 40,
+                  width: 40,
+                  alignment: Alignment.center,
+                  decoration: const BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: Color(0xfff5f5f5),
+                  ),
                   child: const Icon(
-                    Icons.play_arrow,
-                    size: 60,
+                    Icons.play_arrow_rounded,
+                    size: 30,
                     color: Colors.blueGrey,
                   ))
         ]),

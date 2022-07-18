@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -71,35 +72,68 @@ class CameraButton extends StatelessWidget {
     if (onImagePickCallback != null && onVideoPickCallback != null) {
       // Show dialog to choose Photo or Video
       return await showDialog(
-          context: context,
-          builder: (context) {
-            return AlertDialog(
-                contentPadding: const EdgeInsets.all(0),
-                backgroundColor: Colors.transparent,
-                content: Column(mainAxisSize: MainAxisSize.min, children: [
-                  TextButton.icon(
-                    icon: const Icon(Icons.photo, color: Colors.cyanAccent),
-                    label: const Text('Photo'),
-                    onPressed: () {
-                      ImageVideoUtils.handleImageButtonTap(context, controller,
-                          ImageSource.camera, onImagePickCallback,
-                          filePickImpl: filePickImpl,
-                          webImagePickImpl: webImagePickImpl);
-                    },
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            contentPadding: const EdgeInsets.all(20),
+            backgroundColor: Colors.white,
+            content: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                GestureDetector(
+                  onTap: () {
+                    ImageVideoUtils.handleImageButtonTap(context, controller,
+                        ImageSource.camera, onImagePickCallback,
+                        filePickImpl: filePickImpl,
+                        webImagePickImpl: webImagePickImpl);
+                  },
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Icon(
+                        CupertinoIcons.photo,
+                        color: Theme.of(context).primaryColor,
+                      ),
+                      Text(
+                        'Click Photo',
+                        style: Theme.of(context)
+                            .textTheme
+                            .bodyText1
+                            ?.copyWith(color: Theme.of(context).primaryColor),
+                      ),
+                    ],
                   ),
-                  TextButton.icon(
-                    icon: const Icon(Icons.movie_creation,
-                        color: Colors.orangeAccent),
-                    label: const Text('Video'),
-                    onPressed: () {
-                      ImageVideoUtils.handleVideoButtonTap(context, controller,
-                          ImageSource.camera, onVideoPickCallback,
-                          filePickImpl: filePickImpl,
-                          webVideoPickImpl: webVideoPickImpl);
-                    },
-                  )
-                ]));
-          });
+                ),
+                GestureDetector(
+                  onTap: () {
+                    ImageVideoUtils.handleVideoButtonTap(context, controller,
+                        ImageSource.camera, onVideoPickCallback,
+                        filePickImpl: filePickImpl,
+                        webVideoPickImpl: webVideoPickImpl);
+                  },
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Icon(
+                        CupertinoIcons.play_circle,
+                        color: Theme.of(context).primaryColor,
+                      ),
+                      Text(
+                        'Capture Video',
+                        style: Theme.of(context)
+                            .textTheme
+                            .bodyText1
+                            ?.copyWith(color: Theme.of(context).primaryColor),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          );
+        },
+      );
     }
 
     if (onImagePickCallback != null) {
