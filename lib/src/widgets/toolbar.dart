@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:i18n_extension/i18n_widget.dart';
 
@@ -183,6 +184,43 @@ class QuillToolbar extends StatelessWidget implements PreferredSizeWidget {
             undo: false,
             iconTheme: iconTheme,
           ),
+        if (showImageButton)
+          ImageButton(
+            icon: CupertinoIcons.photo,
+            iconSize: toolbarIconSize,
+            controller: controller,
+            onImagePickCallback: onImagePickCallback,
+            filePickImpl: filePickImpl,
+            webImagePickImpl: webImagePickImpl,
+            mediaPickSettingSelector: mediaPickSettingSelector,
+            iconTheme: iconTheme,
+            dialogTheme: dialogTheme,
+          ),
+        if (showVideoButton)
+          VideoButton(
+            icon: CupertinoIcons.play_circle,
+            iconSize: toolbarIconSize,
+            controller: controller,
+            onVideoPickCallback: onVideoPickCallback,
+            filePickImpl: filePickImpl,
+            webVideoPickImpl: webImagePickImpl,
+            mediaPickSettingSelector: mediaPickSettingSelector,
+            iconTheme: iconTheme,
+            dialogTheme: dialogTheme,
+          ),
+        if ((onImagePickCallback != null || onVideoPickCallback != null) &&
+            showCameraButton)
+          CameraButton(
+            icon: CupertinoIcons.photo_camera,
+            iconSize: toolbarIconSize,
+            controller: controller,
+            onImagePickCallback: onImagePickCallback,
+            onVideoPickCallback: onVideoPickCallback,
+            filePickImpl: filePickImpl,
+            webImagePickImpl: webImagePickImpl,
+            webVideoPickImpl: webVideoPickImpl,
+            iconTheme: iconTheme,
+          ),
         if (showFontSize)
           QuillFontSizeButton(
             iconTheme: iconTheme,
@@ -274,43 +312,6 @@ class QuillToolbar extends StatelessWidget implements PreferredSizeWidget {
             icon: Icons.format_clear,
             iconSize: toolbarIconSize,
             controller: controller,
-            iconTheme: iconTheme,
-          ),
-        if (showImageButton)
-          ImageButton(
-            icon: Icons.image,
-            iconSize: toolbarIconSize,
-            controller: controller,
-            onImagePickCallback: onImagePickCallback,
-            filePickImpl: filePickImpl,
-            webImagePickImpl: webImagePickImpl,
-            mediaPickSettingSelector: mediaPickSettingSelector,
-            iconTheme: iconTheme,
-            dialogTheme: dialogTheme,
-          ),
-        if (showVideoButton)
-          VideoButton(
-            icon: Icons.movie_creation,
-            iconSize: toolbarIconSize,
-            controller: controller,
-            onVideoPickCallback: onVideoPickCallback,
-            filePickImpl: filePickImpl,
-            webVideoPickImpl: webImagePickImpl,
-            mediaPickSettingSelector: mediaPickSettingSelector,
-            iconTheme: iconTheme,
-            dialogTheme: dialogTheme,
-          ),
-        if ((onImagePickCallback != null || onVideoPickCallback != null) &&
-            showCameraButton)
-          CameraButton(
-            icon: Icons.photo_camera,
-            iconSize: toolbarIconSize,
-            controller: controller,
-            onImagePickCallback: onImagePickCallback,
-            onVideoPickCallback: onVideoPickCallback,
-            filePickImpl: filePickImpl,
-            webImagePickImpl: webImagePickImpl,
-            webVideoPickImpl: webVideoPickImpl,
             iconTheme: iconTheme,
           ),
         if (showDividers &&
