@@ -75,7 +75,6 @@ class _VideoAppState extends State<VideoApp> {
 
     return Container(
       key: videoContainerKey,
-      // height: 500,
       child: InkWell(
         onTap: () {
           setState(() {
